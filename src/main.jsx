@@ -3,3 +3,5 @@ import App from "./App.jsx";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+//Usar rafce para generar el componente
