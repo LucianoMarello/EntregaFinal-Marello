@@ -1,17 +1,13 @@
-import { Footer } from "./components/layout/footer/Footer";
+import { useState } from "react";
 import { Navbar } from "./components/layout/navbar/Navbar";
-import { Cart } from "./components/pages/cart/Cart";
-import Home from "./components/pages/home/Home";
-import { ProbandoMui } from "./components/pages/probandoMui/ProbandoMui";
+import ItemListContainer from "./components/pages/itemListContainer/ItemListContainer";
 
 function App() {
+  const [greeting, setGreeting] = useState("Hola, ¿Como estas?");
   return (
     <div>
       <Navbar />
-      <Home />
-      <Cart />
-      <ProbandoMui/>
-      <Footer />
+      <ItemListContainer greeting={greeting} />
     </div>
   );
 }

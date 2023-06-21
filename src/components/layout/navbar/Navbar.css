@@ -1,0 +1,25 @@
+.container {
+  background-color: #ee9b01;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.nav li {
+  padding: 1rem;
+  font-size: 20px;
+}
+a {
+  color: black;
+}
+a:hover {
+  color: whitesmoke;
+}
+.imgLogo {
+  height: 8rem;
+  border-radius: 100%;
+}
