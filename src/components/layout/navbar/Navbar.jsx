@@ -10,7 +10,7 @@ export const Navbar = () => {
           <a href="#">
             <img
               className="imgLogo"
-              src="https://res.cloudinary.com/dqpt6x98p/image/upload/v1687367471/logoADN_z4b5tt.jpg"
+              src="https://res.cloudinary.com/dqpt6x98p/image/upload/v1687367471/ADN-Rosario/logoADN_z4b5tt.jpg"
               alt="logoADN"
             />
           </a>
