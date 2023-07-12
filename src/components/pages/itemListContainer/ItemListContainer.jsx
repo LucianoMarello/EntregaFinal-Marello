@@ -11,8 +11,8 @@ const ItemListContainer = () => {
     let productosFiltrados = products.filter(
       (elemento) => elemento.category === categoria
     );
-    const prom = new Promise((res, rej) => {
-      res(categoria === undefined ? products : productosFiltrados);
+    const prom = new Promise((resolve) => {
+      resolve(categoria === undefined ? products : productosFiltrados);
     });
 
     prom.then((respuesta) => setItems(respuesta));
