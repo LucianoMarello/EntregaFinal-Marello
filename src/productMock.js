@@ -5,7 +5,7 @@ export let products = [
         price: 800,
         stock: 20,
         description: "Arroz integral ...",
-        category: "Cereales",
+        category: "cereales",
         img: "https://res.cloudinary.com/dqpt6x98p/image/upload/v1688663707/ADN-Rosario/arroz_m9knbl.webp",
     },
     {
@@ -14,7 +14,7 @@ export let products = [
         price: 750,
         stock: 10,
         description: "Avena marca Quaker",
-        category: "Cereales",
+        category: "cereales",
         img: "https://res.cloudinary.com/dqpt6x98p/image/upload/v1688664264/ADN-Rosario/avena_h1rebt.png",
     },
     {
@@ -23,7 +23,7 @@ export let products = [
         price: 1200,
         stock: 25,
         description: "1kg de lentejas de ..",
-        category: "Legumbres",
+        category: "legumbres",
         img: "https://res.cloudinary.com/dqpt6x98p/image/upload/v1688664363/ADN-Rosario/lentejas_dhtxu4.jpg",
     },
     {
@@ -32,7 +32,7 @@ export let products = [
         price: 1000,
         stock: 15,
         description: "1kg de garbanzos de ...",
-        category: "Legumbres",
+        category: "legumbres",
         img: "https://res.cloudinary.com/dqpt6x98p/image/upload/v1688664293/ADN-Rosario/garbanzos_wnl2bf.jpg",
     },
     {
@@ -41,7 +41,7 @@ export let products = [
         price: 300,
         stock: 30,
         description: "200g de aji molido de...",
-        category: "Condimentos",
+        category: "condimentos",
         img: "https://res.cloudinary.com/dqpt6x98p/image/upload/v1688664449/ADN-Rosario/ajiMolido_xkqfai.jpg",
     },
     {
@@ -50,7 +50,7 @@ export let products = [
         price: 400,
         stock: 40,
         description: "200g de comino de...",
-        category: "Condimentos",
+        category: "condimentos",
         img: "https://res.cloudinary.com/dqpt6x98p/image/upload/v1688664442/ADN-Rosario/comino_vd3k74.jpg",
     }
 ]

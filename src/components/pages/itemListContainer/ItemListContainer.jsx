@@ -5,25 +5,18 @@ import ItemList from "./ItemList";
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);
-  const [error, setError] = useState({});
-  const { categoryName } = useParams();
+  const { categoria } = useParams();
 
   useEffect(() => {
     let productosFiltrados = products.filter(
-      (elemento) => elemento.category === categoryName
+      (elemento) => elemento.category === categoria
     );
-    const prom = new Promise((resolve, reject) => {
-      resolve(categoryName === undefined ? products : productosFiltrados);
-      reject({ message: "No autorizado", status: 401 });
+    const prom = new Promise((res, rej) => {
+      res(categoria === undefined ? products : productosFiltrados);
     });
 
-    prom
-      .then((respuesta) => setItems(respuesta))
-      .catch((err) => {
-        setError(err);
-        alert(error);
-      });
-  }, [categoryName]);
+    prom.then((respuesta) => setItems(respuesta));
+  }, [categoria]);
 
   return <ItemList items={items} />;
 };
