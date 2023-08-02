@@ -12,13 +12,19 @@ const ItemListContainer = () => {
       (elemento) => elemento.category === categoria
     );
     const prom = new Promise((resolve) => {
-      resolve(categoria === undefined ? products : productosFiltrados);
+      setTimeout(() => {
+        resolve(categoria === undefined ? products : productosFiltrados);
+      }, 1000);
     });
 
     prom.then((respuesta) => setItems(respuesta));
   }, [categoria]);
 
-  return <ItemList items={items} />;
+  return (
+    <>
+      {items.length === 0 ? <h2>Cargando...</h2> : <ItemList items={items} />};
+    </>
+  );
 };
 
 export default ItemListContainer;
