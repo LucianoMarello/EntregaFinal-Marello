@@ -14,7 +14,7 @@ const ItemListContainer = () => {
     const prom = new Promise((resolve) => {
       setTimeout(() => {
         resolve(categoria === undefined ? products : productosFiltrados);
-      }, 1000);
+      }, 500);
     });
 
     prom.then((respuesta) => setItems(respuesta));

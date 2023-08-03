@@ -1,4 +1,4 @@
-import { Cart } from "../components/pages/cart/Cart";
+import CartContainer from "../components/pages/cart/CartContainer";
 import CheckoutContainer from "../components/pages/checkout/CheckoutContainer";
 import FormikForm from "../components/pages/formikForm/FormikForm";
 import ItemDetailContainer from "../components/pages/itemDetail/ItemDetailContainer";
@@ -23,7 +23,7 @@ export const routes = [
     {
         id: "cart",
         path: "/cart",
-        Element: Cart
+        Element: CartContainer
     },
     {
         id: "checkout",

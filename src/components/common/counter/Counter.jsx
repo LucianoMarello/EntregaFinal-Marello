@@ -1,7 +1,6 @@
 import { Box, Button, Grid } from "@mui/material";
 
 const Counter = ({ contador, sumar, restar, onAdd }) => {
-  console.log(contador);
   return (
     <Box>
       <Grid

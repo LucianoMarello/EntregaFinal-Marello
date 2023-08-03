@@ -14,14 +14,20 @@ const CartContextProvider = ({ children }) => {
       let newArray = cart.map((element) => {
         if (element.id === item.id) {
           return { ...element, quantity: item.quantity };
-        } /* else{
-          return elemento //
-        } */
+        } else {
+          return element;
+        }
       });
       setCart(newArray);
     } else {
       setCart([...cart, item]);
     }
+  };
+
+  //Función auxiliar para detectar si un id de un elemento está en el carrito
+  const isInCart = (id) => {
+    let exist = cart.some((element) => element.id === id);
+    return exist;
   };
 
   //Función para vaciar el carrito
@@ -35,12 +41,6 @@ const CartContextProvider = ({ children }) => {
     setCart(newArray);
   };
 
-  //Función auxiliar para detectar si un id de un elemento está en el carrito
-  const isInCart = (id) => {
-    let exist = cart.some((element) => element.id === +id);
-    return exist;
-  };
-
   //Función para calcular el total a pagar en el carrito
   const getTotalPrice = () => {
     let total = cart.reduce((acc, element) => {
@@ -51,6 +51,7 @@ const CartContextProvider = ({ children }) => {
 
   //Función que devuelve la cantidad de un elemento en el carrito
   const getQuantityById = (id) => {
+    console.log(cart);
     const product = cart.find((element) => element.id === +id);
     return product ? product.quantity : 1;
   };

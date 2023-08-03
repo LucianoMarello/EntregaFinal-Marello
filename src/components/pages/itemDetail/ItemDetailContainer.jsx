@@ -12,7 +12,7 @@ const ItemDetailContainer = () => {
   const totalQuantity = getQuantityById(id);
 
   useEffect(() => {
-    let productoSeleccionado = products.find((elemento) => elemento.id === +id);
+    let productoSeleccionado = products.find((element) => element.id === +id);
     const prom = new Promise((resolve) => {
       resolve(productoSeleccionado);
     });

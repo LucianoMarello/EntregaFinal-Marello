@@ -1,13 +1,17 @@
-import { useContext } from "react";
 import "./Cart.css";
-import { CartContext } from "../../../context/CartContext";
 
-export const Cart = () => {
-  const { cart } = useContext(CartContext);
-
+export const Cart = ({ cart }) => {
   return (
     <div>
-      <h2>Este es el carrito</h2>
+      {cart.map((element) => {
+        return (
+          <div key={element.id}>
+            <h2>
+              {element.name} - {element.quantity} unidad/es
+            </h2>
+          </div>
+        );
+      })}
     </div>
   );
 };
