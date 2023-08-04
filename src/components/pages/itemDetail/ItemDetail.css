@@ -1,7 +1,5 @@
-img {
-  height: 20rem;
-}
-.detalles {
-  text-align: center;
-  border: 1px solid black;
+.imgProd {
+  height: 100%;
+  border-radius: 10%;
+  border: 2px solid black;
 }

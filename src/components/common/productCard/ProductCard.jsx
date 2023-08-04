@@ -8,27 +8,27 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ elemento }) => {
+const ProductCard = ({ element }) => {
   return (
     <Card sx={{ Width: 345, border: 0.2, margin: 2 }}>
-      <Link to={`/itemDetail/${elemento.id}`}>
+      <Link to={`/itemDetail/${element.id}`}>
         <CardMedia
           component="img"
-          alt={elemento.name}
-          height="280rem"
-          image={elemento.img}
+          alt={element.name}
+          height="380rem"
+          image={element.img}
         />
       </Link>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {elemento.name}
+          {element.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {elemento.description}
+          {element.description}
         </Typography>
       </CardContent>
       <CardActions>
-        <Link to={`/itemDetail/${elemento.id}`}>
+        <Link to={`/itemDetail/${element.id}`}>
           <Button size="small">Ver Producto</Button>
         </Link>
         <Button size="small">Añadir al Carrito</Button>

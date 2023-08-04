@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
 import { Cart } from "./Cart";
+import EmptyCart from "./EmptyCart";
 
 const CartContainer = () => {
   const { cart, clearCart, deleteById } = useContext(CartContext);
@@ -8,7 +9,7 @@ const CartContainer = () => {
   return (
     <>
       {cart.length === 0 ? (
-        <h2>No hay productos en el carrito</h2>
+        <EmptyCart />
       ) : (
         <Cart cart={cart} clearCart={clearCart} deleteById={deleteById} />
       )}

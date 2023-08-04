@@ -13,7 +13,7 @@ export let products = [
         name: "Avena",
         price: 750,
         stock: 10,
-        description: "Avena marca Quaker",
+        description: "Avena marca Quaker fuente de fibra alimentaria",
         category: "cereales",
         img: "https://res.cloudinary.com/dqpt6x98p/image/upload/v1688664264/ADN-Rosario/avena_h1rebt.png",
     },

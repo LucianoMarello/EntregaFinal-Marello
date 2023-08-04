@@ -5,24 +5,29 @@ import ItemList from "./ItemList";
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);
-  const { categoria } = useParams();
+  const { category } = useParams();
 
   useEffect(() => {
     let productosFiltrados = products.filter(
-      (elemento) => elemento.category === categoria
+      (elemento) => elemento.category === category
     );
     const prom = new Promise((resolve) => {
       setTimeout(() => {
-        resolve(categoria === undefined ? products : productosFiltrados);
+        resolve(category === undefined ? products : productosFiltrados);
       }, 100);
     });
 
     prom.then((respuesta) => setItems(respuesta));
-  }, [categoria]);
+  }, [category]);
 
   return (
     <>
-      {items.length === 0 ? <h2>Cargando...</h2> : <ItemList items={items} />};
+      {items.length === 0 ? (
+        <h2>Cargando...</h2>
+      ) : (
+        <ItemList items={items} category={category} />
+      )}
+      ;
     </>
   );
 };

@@ -2,24 +2,36 @@ import { Box, Button, Grid } from "@mui/material";
 
 const Counter = ({ contador, sumar, restar, onAdd }) => {
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-around",
+        height: "7.5rem",
+        width: "14rem",
+      }}
+    >
       <Grid
         sx={{
           display: "flex",
-          alignContent: "center",
-          justifyContent: "center",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        <Button variant="outlined" onClick={restar}>
+        <Button variant="contained" onClick={restar}>
           Restar
         </Button>
         <h3>{contador}</h3>
-        <Button variant="outlined" onClick={sumar}>
+        <Button variant="contained" onClick={sumar}>
           Sumar
         </Button>
       </Grid>
       <Grid>
-        <Button variant="outlined" onClick={() => onAdd(contador)}>
+        <Button
+          variant="contained"
+          fullWidth="true"
+          onClick={() => onAdd(contador)}
+        >
           Agregar al Carrito
         </Button>
       </Grid>
