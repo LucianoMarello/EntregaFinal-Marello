@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import { Navbar } from "../components/layout/navbar/Navbar";
 import { routes } from "./routes";
+import Layout from "../components/layout/layout/Layout";
 
 const AppRouter = () => {
   return (
     <Routes>
-      <Route element={<Navbar />}>
+      <Route element={<Layout />}>
         {routes.map(({ id, path, Element }) => (
           <Route key={id} path={path} element={<Element />} />
         ))}
