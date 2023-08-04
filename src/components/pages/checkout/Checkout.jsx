@@ -1,40 +1,12 @@
-import { Button, TextField } from "@mui/material";
-import "./FormikForm.css";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import { Box, Button, TextField } from "@mui/material";
+import "./checkout.css";
 
-const FormikForm = () => {
-  const { handleSubmit, handleChange, errors } = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      password: "",
-    },
-    onSubmit: (data) => {
-      console.log(data);
-    },
-    validationSchema: Yup.object({
-      name: Yup.string()
-        .required("Este campo es obligatorio")
-        .max(15, "No usar mas de 15 caracteres"),
-      email: Yup.string()
-        .required("Este campo es obligatorio")
-        .email("Debe ingresar un Email válido"),
-      password: Yup.string()
-        .required("Este campo es obligatorio")
-        .min(6, "Usar mas de 6 caracteres"),
-      repeatPassword: Yup.string()
-        .required("Este campo es obligatorio")
-        .oneOf([Yup.ref("password")], "La contraseña no coincide"),
-    }),
-    validateOnChange: false,
-  });
-  console.log({ errors });
-
+const Checkout = ({ handleSubmit, handleChange, errors }) => {
   return (
-    <div className="containerForm">
+    <Box>
       <form className="form" onSubmit={handleSubmit}>
         <TextField
+          margin="dense"
           type="text"
           label="Nombre"
           name="name"
@@ -44,6 +16,7 @@ const FormikForm = () => {
           helperText={errors.name}
         />
         <TextField
+          margin="dense"
           type="text"
           label="Email"
           name="email"
@@ -53,6 +26,7 @@ const FormikForm = () => {
           helperText={errors.email}
         />
         <TextField
+          margin="dense"
           type="password"
           label="Contraseña"
           name="password"
@@ -62,6 +36,7 @@ const FormikForm = () => {
           helperText={errors.password}
         />
         <TextField
+          margin="dense"
           type="password"
           label="Repetir contraseña"
           name="repeatPassword"
@@ -70,12 +45,17 @@ const FormikForm = () => {
           onChange={handleChange}
           helperText={errors.repeatPassword}
         />
-        <Button type="submit" variant="contained">
-          Enviar
+        <Button
+          sx={{ marginTop: "1rem" }}
+          color="success"
+          type="submit"
+          variant="contained"
+        >
+          Confirmar Compra
         </Button>
       </form>
-    </div>
+    </Box>
   );
 };
 
-export default FormikForm;
+export default Checkout;

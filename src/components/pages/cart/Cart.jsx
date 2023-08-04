@@ -1,17 +1,55 @@
+import { Box, Button, Grid, IconButton } from "@mui/material";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "./Cart.css";
+import { Check, Delete } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
-export const Cart = ({ cart }) => {
+export const Cart = ({ cart, clearCart, deleteById }) => {
   return (
-    <div>
-      {cart.map((element) => {
-        return (
-          <div key={element.id}>
-            <h2>
-              {element.name} - {element.quantity} unidad/es
-            </h2>
-          </div>
-        );
-      })}
-    </div>
+    <Box>
+      <Grid sx={{ paddingTop: "2rem" }}>
+        {cart.map((element) => {
+          return (
+            <Grid
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              key={element.id}
+            >
+              <h2>
+                {element.name} - {element.quantity} unidad/es
+              </h2>
+              <IconButton color="error" onClick={() => deleteById(element.id)}>
+                <HighlightOffIcon />
+              </IconButton>
+            </Grid>
+          );
+        })}
+      </Grid>
+      <Grid
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          padding: "3rem",
+        }}
+      >
+        <Link to="/checkout">
+          <Button variant="outlined" color="success" startIcon={<Check />}>
+            Comprar ahora
+          </Button>
+        </Link>
+        <Button
+          sx={{ marginLeft: "2rem" }}
+          variant="outlined"
+          color="error"
+          startIcon={<Delete />}
+          onClick={() => clearCart()}
+        >
+          Vaciar Carrito
+        </Button>
+      </Grid>
+    </Box>
   );
 };
