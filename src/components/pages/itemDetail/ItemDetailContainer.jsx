@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { products } from "../../../productMock";
 import ItemDetail from "./ItemDetail";
 import { CartContext } from "../../../context/CartContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ItemDetailContainer = () => {
   const [producto, setProducto] = useState({});
@@ -10,6 +12,19 @@ const ItemDetailContainer = () => {
   const { addToCart, getQuantityById } = useContext(CartContext);
 
   const totalQuantity = getQuantityById(id);
+
+  const notify = (item) => {
+    toast.info(`Se agregaron ${item.quantity} unidad/es de ${item.name}`, {
+      position: "top-left",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
 
   useEffect(() => {
     let productoSeleccionado = products.find((element) => element.id === +id);
@@ -23,10 +38,14 @@ const ItemDetailContainer = () => {
     let productCart = { ...producto, quantity: quantity };
     addToCart(productCart);
     //Hacer una alerta o toastify
+    notify(productCart);
   };
 
   return (
-    <ItemDetail producto={producto} onAdd={onAdd} initial={totalQuantity} />
+    <div>
+      <ItemDetail producto={producto} onAdd={onAdd} initial={totalQuantity} />
+      <ToastContainer />
+    </div>
   );
 };
 
