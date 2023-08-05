@@ -15,7 +15,7 @@ const ItemDetailContainer = () => {
 
   const notify = (item) => {
     toast.info(`Se agregaron ${item.quantity} unidad/es de ${item.name}`, {
-      position: "top-left",
+      position: "bottom-right",
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -37,7 +37,6 @@ const ItemDetailContainer = () => {
   const onAdd = (quantity) => {
     let productCart = { ...producto, quantity: quantity };
     addToCart(productCart);
-    //Hacer una alerta o toastify
     notify(productCart);
   };
 

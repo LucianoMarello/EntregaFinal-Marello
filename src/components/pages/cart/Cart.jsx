@@ -4,7 +4,7 @@ import "./Cart.css";
 import { Check, Delete } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
-export const Cart = ({ cart, clearCart, deleteById }) => {
+export const Cart = ({ cart, emptyCart, deleteById }) => {
   return (
     <Box>
       <Grid sx={{ paddingTop: "2rem" }}>
@@ -45,7 +45,7 @@ export const Cart = ({ cart, clearCart, deleteById }) => {
           variant="outlined"
           color="error"
           startIcon={<Delete />}
-          onClick={() => clearCart()}
+          onClick={() => emptyCart()}
         >
           Vaciar Carrito
         </Button>
