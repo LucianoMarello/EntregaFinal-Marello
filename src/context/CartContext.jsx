@@ -37,7 +37,7 @@ const CartContextProvider = ({ children }) => {
 
   //Función para eliminar un elemento del carrito
   const deleteById = (id) => {
-    let newArray = cart.filter((element) => element.id !== +id);
+    let newArray = cart.filter((element) => element.id !== id);
     setCart(newArray);
   };
 
@@ -51,8 +51,7 @@ const CartContextProvider = ({ children }) => {
 
   //Función que devuelve la cantidad de un elemento en el carrito
   const getQuantityById = (id) => {
-    console.log(cart);
-    const product = cart.find((element) => element.id === +id);
+    const product = cart.find((element) => element.id === id);
     return product ? product.quantity : 1;
   };
 

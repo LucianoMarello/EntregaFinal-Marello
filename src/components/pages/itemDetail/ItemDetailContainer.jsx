@@ -1,15 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { products } from "../../../productMock";
 import ItemDetail from "./ItemDetail";
 import { CartContext } from "../../../context/CartContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { db } from "../../../firebaseConfig";
+import { getDoc, collection, doc } from "firebase/firestore";
 
 const ItemDetailContainer = () => {
-  const [producto, setProducto] = useState({});
-  const { id } = useParams();
   const { addToCart, getQuantityById } = useContext(CartContext);
+  const [product, setProduct] = useState({});
+  const { id } = useParams();
 
   const totalQuantity = getQuantityById(id);
 
@@ -27,22 +28,22 @@ const ItemDetailContainer = () => {
   };
 
   useEffect(() => {
-    let productoSeleccionado = products.find((element) => element.id === +id);
-    const prom = new Promise((resolve) => {
-      resolve(productoSeleccionado);
+    let productsCollection = collection(db, "products");
+    let productRef = doc(productsCollection, id);
+    getDoc(productRef).then((res) => {
+      setProduct({ ...res.data(), id: res.id });
     });
-    prom.then((res) => setProducto(res));
   }, [id]);
 
   const onAdd = (quantity) => {
-    let productCart = { ...producto, quantity: quantity };
+    let productCart = { ...product, quantity: quantity };
     addToCart(productCart);
     notify(productCart);
   };
 
   return (
     <div>
-      <ItemDetail producto={producto} onAdd={onAdd} initial={totalQuantity} />
+      <ItemDetail product={product} onAdd={onAdd} initial={totalQuantity} />
       <ToastContainer />
     </div>
   );

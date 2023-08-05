@@ -1,8 +1,37 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Checkout from "./Checkout";
+import Swal from "sweetalert2";
+import { useContext } from "react";
+import { CartContext } from "../../../context/CartContext";
 
 const CheckoutContainer = () => {
+  const { cart } = useContext(CartContext);
+  // HACER MENSAJE DE DETALLE DE COMPRA
+  const detail = `Detalle de compra: ${cart.map(
+    (element) => ` - ${element.quantity} unidad/es de ${element.name}`
+  )}`;
+
+  const confirmPurchase = () => {
+    Swal.fire({
+      title: "¿Confirmar compra?",
+      text: detail, // HACER MENSAJE DE DETALLE DE COMPRA
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "¡Si, confirmar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          icon: "success",
+          title: "Su compra ha sido confirmada",
+          text: "¡Muchas gracias por confiar en nosotros!",
+        });
+      }
+    });
+  };
+
   const { handleSubmit, handleChange, errors } = useFormik({
     initialValues: {
       name: "",
@@ -10,7 +39,9 @@ const CheckoutContainer = () => {
       password: "",
     },
     onSubmit: (data) => {
+      // HACER MENSAJE DE DETALLE DE COMPRA
       console.log(data);
+      confirmPurchase();
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -28,7 +59,6 @@ const CheckoutContainer = () => {
     }),
     validateOnChange: false,
   });
-  console.log({ errors });
 
   return (
     <Checkout
