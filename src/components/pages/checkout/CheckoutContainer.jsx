@@ -2,33 +2,24 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Checkout from "./Checkout";
 import Swal from "sweetalert2";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../../context/CartContext";
+import { db } from "../../../firebaseConfig";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const CheckoutContainer = () => {
-  const { cart } = useContext(CartContext);
-  // HACER MENSAJE DE DETALLE DE COMPRA
-  const detail = `Detalle de compra: ${cart.map(
-    (element) => ` - ${element.quantity} unidad/es de ${element.name}`
-  )}`;
+  const [orderId, setOrderId] = useState("");
+  const { cart, getTotalPrice } = useContext(CartContext);
 
-  const confirmPurchase = () => {
+  let total = getTotalPrice();
+  let date = serverTimestamp();
+
+  const showOrder = () => {
     Swal.fire({
-      title: "¿Confirmar compra?",
-      text: detail, // HACER MENSAJE DE DETALLE DE COMPRA
-      icon: "info",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "¡Si, confirmar!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          icon: "success",
-          title: "Su compra ha sido confirmada",
-          text: "¡Muchas gracias por confiar en nosotros!",
-        });
-      }
+      title: "¡Compra Confirmada!",
+      text: "Gracias por confiar en nosotros",
+      icon: "success",
+      timer: 3000,
     });
   };
 
@@ -39,9 +30,20 @@ const CheckoutContainer = () => {
       password: "",
     },
     onSubmit: (data) => {
-      // HACER MENSAJE DE DETALLE DE COMPRA
-      console.log(data);
-      confirmPurchase();
+      //Objeto que representa la orden de compra
+      let order = {
+        buyer: data.name,
+        items: cart,
+        total,
+        date,
+      };
+
+      //Creación de la orden en firebase
+      const ordersCollection = collection(db, "orders");
+      addDoc(ordersCollection, order).then((res) => {
+        setOrderId(res.id);
+        showOrder();
+      });
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -65,6 +67,9 @@ const CheckoutContainer = () => {
       handleSubmit={handleSubmit}
       handleChange={handleChange}
       errors={errors}
+      cart={cart}
+      total={total}
+      orderId={orderId}
     />
   );
 };

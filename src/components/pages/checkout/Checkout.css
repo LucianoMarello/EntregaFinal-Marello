@@ -2,5 +2,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem 35%;
+  width: 25rem;
+}
+.details {
+  padding-bottom: 1rem;
 }
