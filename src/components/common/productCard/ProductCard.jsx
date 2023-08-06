@@ -31,7 +31,6 @@ const ProductCard = ({ element }) => {
         <Link to={`/itemDetail/${element.id}`}>
           <Button size="small">Ver Producto</Button>
         </Link>
-        <Button size="small">Añadir al Carrito</Button>
       </CardActions>
     </Card>
   );
