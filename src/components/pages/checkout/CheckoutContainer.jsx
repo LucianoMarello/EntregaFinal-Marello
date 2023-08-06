@@ -5,7 +5,13 @@ import Swal from "sweetalert2";
 import { useContext, useState } from "react";
 import { CartContext } from "../../../context/CartContext";
 import { db } from "../../../firebaseConfig";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  serverTimestamp,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 
 const CheckoutContainer = () => {
   const [orderId, setOrderId] = useState("");
@@ -43,6 +49,13 @@ const CheckoutContainer = () => {
       addDoc(ordersCollection, order).then((res) => {
         setOrderId(res.id);
         showOrder();
+      });
+
+      //Modificación del stock en firebase de cada documento
+      cart.forEach((product) => {
+        updateDoc(doc(db, "products", product.id), {
+          stock: product.stock - product.quantity,
+        });
       });
     },
     validationSchema: Yup.object({
