@@ -1,6 +1,5 @@
 export let products = [
     {
-        id: 1,
         name: "Arroz",
         price: 800,
         stock: 20,
@@ -9,7 +8,6 @@ export let products = [
         img: "https://res.cloudinary.com/dqpt6x98p/image/upload/v1688663707/ADN-Rosario/arroz_m9knbl.webp",
     },
     {
-        id: 2,
         name: "Avena",
         price: 750,
         stock: 10,
@@ -18,7 +16,6 @@ export let products = [
         img: "https://res.cloudinary.com/dqpt6x98p/image/upload/v1688664264/ADN-Rosario/avena_h1rebt.png",
     },
     {
-        id: 3,
         name: "Lentejas",
         price: 1200,
         stock: 25,
@@ -27,7 +24,6 @@ export let products = [
         img: "https://res.cloudinary.com/dqpt6x98p/image/upload/v1688664363/ADN-Rosario/lentejas_dhtxu4.jpg",
     },
     {
-        id: 4,
         name: "Garbanzos",
         price: 1000,
         stock: 15,
@@ -36,7 +32,6 @@ export let products = [
         img: "https://res.cloudinary.com/dqpt6x98p/image/upload/v1688664293/ADN-Rosario/garbanzos_wnl2bf.jpg",
     },
     {
-        id: 5,
         name: "Aji molido",
         price: 300,
         stock: 30,
@@ -45,7 +40,6 @@ export let products = [
         img: "https://res.cloudinary.com/dqpt6x98p/image/upload/v1688664449/ADN-Rosario/ajiMolido_xkqfai.jpg",
     },
     {
-        id: 6,
         name: "Comino",
         price: 400,
         stock: 40,
