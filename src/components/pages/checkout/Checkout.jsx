@@ -1,5 +1,5 @@
 import { Box, Button, Grid, TextField } from "@mui/material";
-import "./checkout.css";
+import "./Checkout.css";
 
 const Checkout = ({
   handleSubmit,
