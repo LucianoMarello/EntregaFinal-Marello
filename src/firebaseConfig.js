@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCuEoRWGy9xVHYjyf3MALQAFhiPsc5RtVo",
-    authDomain: "ecommerce-marello.firebaseapp.com",
-    projectId: "ecommerce-marello",
-    storageBucket: "ecommerce-marello.appspot.com",
-    messagingSenderId: "806865211961",
-    appId: "1:806865211961:web:c30684c673635f5a3273e8"
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
