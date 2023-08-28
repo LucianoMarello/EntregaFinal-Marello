@@ -29,7 +29,7 @@ const Counter = ({ contador, sumar, restar, onAdd }) => {
       <Grid>
         <Button
           variant="contained"
-          fullWidth="true"
+          fullWidth={true}
           onClick={() => onAdd(contador)}
         >
           Agregar al Carrito

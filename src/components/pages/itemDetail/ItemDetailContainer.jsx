@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
 import { CartContext } from "../../../context/CartContext";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { db } from "../../../firebaseConfig";
 import { getDoc, collection, doc } from "firebase/firestore";
@@ -21,8 +21,7 @@ const ItemDetailContainer = () => {
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
+      draggable: false,
       theme: "light",
     });
   };
@@ -44,7 +43,6 @@ const ItemDetailContainer = () => {
   return (
     <div>
       <ItemDetail product={product} onAdd={onAdd} initial={totalQuantity} />
-      <ToastContainer />
     </div>
   );
 };
