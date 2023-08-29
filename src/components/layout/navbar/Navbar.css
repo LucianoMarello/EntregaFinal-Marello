@@ -5,9 +5,11 @@
   align-items: center;
 }
 .nav {
+  background-color: steelblue;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-around;
 }
 .nav li {
   padding: 1rem;
@@ -16,10 +18,8 @@
 a {
   color: black;
 }
-a:hover {
-  color: whitesmoke;
-}
 .imgLogo {
   height: 8rem;
   border-radius: 100%;
+  margin: 0.5rem 2rem;
 }
