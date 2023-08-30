@@ -5,9 +5,9 @@ import "./ItemList.css";
 const ItemList = ({ items, category }) => {
   return (
     <Box>
-      <h2 className="title">
+      <h1 className="title">
         {category ? `Productos: ${category}` : "Productos"}
-      </h2>
+      </h1>
       <Grid container>
         {items.map((element) => {
           return (

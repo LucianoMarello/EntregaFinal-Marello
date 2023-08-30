@@ -1,5 +1,7 @@
+import Register from "./Register";
+
 const RegisterContainer = () => {
-  return <div>RegisterContainer</div>;
+  return <Register />;
 };
 
 export default RegisterContainer;

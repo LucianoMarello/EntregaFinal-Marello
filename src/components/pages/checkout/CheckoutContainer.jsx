@@ -12,13 +12,15 @@ import {
   updateDoc,
   doc,
 } from "firebase/firestore";
+import { Navigate } from "react-router-dom";
 
 const CheckoutContainer = () => {
   const [orderId, setOrderId] = useState("");
-  const { cart, getTotalPrice } = useContext(CartContext);
+  const { cart, getTotalPrice, getTotalQuantity } = useContext(CartContext);
 
   let total = getTotalPrice();
   let date = serverTimestamp();
+  const cantProds = getTotalQuantity();
 
   const showOrder = () => {
     Swal.fire({
@@ -76,14 +78,20 @@ const CheckoutContainer = () => {
   });
 
   return (
-    <Checkout
-      handleSubmit={handleSubmit}
-      handleChange={handleChange}
-      errors={errors}
-      cart={cart}
-      total={total}
-      orderId={orderId}
-    />
+    <>
+      {cantProds === 0 ? (
+        <Navigate to="/" />
+      ) : (
+        <Checkout
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          errors={errors}
+          cart={cart}
+          total={total}
+          orderId={orderId}
+        />
+      )}
+    </>
   );
 };
 

@@ -7,7 +7,7 @@ const CartContextProvider = ({ children }) => {
   //Arreglo carrito
   const [cart, setCart] = useState([]);
 
-  //Función para agregar items al carrito
+  //Agregar items al carrito
   const addToCart = (item) => {
     const exist = isInCart(item.id);
     if (exist) {
@@ -24,24 +24,24 @@ const CartContextProvider = ({ children }) => {
     }
   };
 
-  //Función auxiliar para detectar si un id de un elemento está en el carrito
+  //Auxiliar para detectar si un id de un elemento está en el carrito
   const isInCart = (id) => {
     let exist = cart.some((element) => element.id === id);
     return exist;
   };
 
-  //Función para vaciar el carrito
+  //Vaciar el carrito
   const clearCart = () => {
     setCart([]);
   };
 
-  //Función para eliminar un elemento del carrito
+  //Eliminar un elemento del carrito
   const deleteById = (id) => {
     let newArray = cart.filter((element) => element.id !== id);
     setCart(newArray);
   };
 
-  //Función para calcular el total a pagar en el carrito
+  //Calcular el total a pagar en el carrito
   const getTotalPrice = () => {
     let total = cart.reduce((acc, element) => {
       return acc + element.price * element.quantity;
@@ -49,13 +49,13 @@ const CartContextProvider = ({ children }) => {
     return total;
   };
 
-  //Función que devuelve la cantidad de un elemento en el carrito
+  //Cantidad de un elemento en el carrito
   const getQuantityById = (id) => {
     const product = cart.find((element) => element.id === id);
     return product ? product.quantity : 1;
   };
 
-  //Función que devuelve la cantidad total de productos en el carrito
+  //Cantidad total de productos en el carrito
   const getTotalQuantity = () => {
     let total = cart.reduce((acc, element) => {
       return acc + element.quantity;
