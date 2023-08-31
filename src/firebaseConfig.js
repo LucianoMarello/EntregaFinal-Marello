@@ -22,12 +22,12 @@ export const db = getFirestore(app)
 const auth = getAuth(app)
 
 //Agregar en el onsubmit del formulario de login y registro
-export const logIn = async ({ email, password }) => {
+export const logIn = async (email, password) => {
     let res = await signInWithEmailAndPassword(auth, email, password)
     return res
 }
 
-export const signUp = async ({ email, password }) => {
+export const signUp = async (email, password) => {
     let res = await createUserWithEmailAndPassword(auth, email, password)
     return res
 }
