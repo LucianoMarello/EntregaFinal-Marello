@@ -1,7 +1,6 @@
 import { Box, Button, Grid, TextField } from "@mui/material";
-import "./Register.css";
 
-const Register = ({ handleSubmit, handleChange, errors, signInWithGoogle }) => {
+const SignIn = ({ handleSubmit, handleChange, errors, signInWithGoogle }) => {
   return (
     <Box>
       <Grid
@@ -12,18 +11,8 @@ const Register = ({ handleSubmit, handleChange, errors, signInWithGoogle }) => {
           alignItems: "center",
         }}
       >
-        <h1>Crear Cuenta</h1>
+        <h1>Iniciar Sesión</h1>
         <form className="form" onSubmit={handleSubmit}>
-          <TextField
-            margin="dense"
-            type="text"
-            label="Nombre"
-            name="name"
-            error={errors.name ? true : false}
-            variant="outlined"
-            onChange={handleChange}
-            helperText={errors.name}
-          />
           <TextField
             margin="dense"
             type="text"
@@ -44,23 +33,13 @@ const Register = ({ handleSubmit, handleChange, errors, signInWithGoogle }) => {
             onChange={handleChange}
             helperText={errors.password}
           />
-          <TextField
-            margin="dense"
-            type="password"
-            label="Repetir contraseña"
-            name="repeatPassword"
-            error={errors.repeatPassword ? true : false}
-            variant="outlined"
-            onChange={handleChange}
-            helperText={errors.repeatPassword}
-          />
           <Button
             sx={{ marginTop: "1rem" }}
             color="success"
             type="submit"
             variant="contained"
           >
-            Crear Cuenta
+            Iniciar Sesión
           </Button>
         </form>
         <button
@@ -75,4 +54,4 @@ const Register = ({ handleSubmit, handleChange, errors, signInWithGoogle }) => {
   );
 };
 
-export default Register;
+export default SignIn;

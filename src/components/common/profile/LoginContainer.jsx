@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Login from "./Login";
+import Logged from "./Logged";
+import { AuthContext } from "../../../context/AuthContext";
 
 const LoginContainer = () => {
+  const { logOut } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -10,15 +13,29 @@ const LoginContainer = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const logOff = () => {
+    handleClose();
+    logOut();
+  };
   return (
-    <div>
-      <Login
-        open={open}
-        handleClick={handleClick}
-        handleClose={handleClose}
-        anchorEl={anchorEl}
-      />
-    </div>
+    <>
+      {localStorage.getItem("name") ? (
+        <Logged
+          open={open}
+          handleClick={handleClick}
+          handleClose={handleClose}
+          anchorEl={anchorEl}
+          logOff={logOff}
+        />
+      ) : (
+        <Login
+          open={open}
+          handleClick={handleClick}
+          handleClose={handleClose}
+          anchorEl={anchorEl}
+        />
+      )}
+    </>
   );
 };
 

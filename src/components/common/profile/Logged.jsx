@@ -2,7 +2,7 @@ import { AccountCircle } from "@mui/icons-material";
 import { Button, Menu, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const Login = ({ open, handleClick, handleClose, anchorEl }) => {
+const Logged = ({ open, handleClick, handleClose, anchorEl, logOff }) => {
   return (
     <div>
       <Button
@@ -14,7 +14,7 @@ const Login = ({ open, handleClick, handleClose, anchorEl }) => {
         onClick={handleClick}
         startIcon={<AccountCircle />}
       >
-        Mi Cuenta
+        {localStorage.getItem("name")}
       </Button>
       <Menu
         id="basic-menu"
@@ -26,14 +26,14 @@ const Login = ({ open, handleClick, handleClose, anchorEl }) => {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Link to="/signIn">Iniciar Sesión</Link>
+          <Link to="/myProfile">Mi Cuenta</Link>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Link to="/register">Crear Cuenta</Link>
+        <MenuItem onClick={logOff}>
+          <Link to="/">Cerrar Sesión</Link>
         </MenuItem>
       </Menu>
     </div>
   );
 };
 
-export default Login;
+export default Logged;

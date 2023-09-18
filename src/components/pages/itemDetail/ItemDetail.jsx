@@ -26,7 +26,7 @@ const ItemDetail = ({ product, onAdd, initial }) => {
             width: "20rem",
           }}
         >
-          <h1>{product.name}</h1>
+          <h1 className="nomProd">{product.name}</h1>
           <h2>Precio por Unidad: {product.price}</h2>
           <h3>Descripcion: {product.description}</h3>
           {product.stock === 0 ? (

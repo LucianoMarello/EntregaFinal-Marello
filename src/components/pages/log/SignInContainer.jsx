@@ -1,15 +1,14 @@
 import { useFormik } from "formik";
-import * as Yup from "yup";
-import Register from "./Register";
 import { useContext } from "react";
+import * as Yup from "yup";
 import { AuthContext } from "../../../context/AuthContext";
+import SignIn from "./SignIn";
 
-const RegisterContainer = () => {
-  const { createAccount, signInWithGoogle } = useContext(AuthContext);
+const SignInContainer = () => {
+  const { signInWithGoogle, signIn } = useContext(AuthContext);
 
   const { handleSubmit, handleChange, errors } = useFormik({
     initialValues: {
-      name: "",
       email: "",
       password: "",
     },
@@ -17,29 +16,22 @@ const RegisterContainer = () => {
       let user = {
         email: data.email,
         password: data.password,
-        name: data.name,
       };
 
-      //Crear usuario en base de datos
-      createAccount(user);
+      signIn(user);
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Este campo es obligatorio"),
       email: Yup.string()
         .required("Este campo es obligatorio")
         .email("Debe ingresar un Email válido"),
       password: Yup.string()
         .required("Este campo es obligatorio")
         .min(6, "Usar mas de 6 caracteres"),
-      repeatPassword: Yup.string()
-        .required("Este campo es obligatorio")
-        .oneOf([Yup.ref("password")], "La contraseña no coincide"),
     }),
     validateOnChange: false,
   });
-
   return (
-    <Register
+    <SignIn
       handleSubmit={handleSubmit}
       handleChange={handleChange}
       errors={errors}
@@ -48,4 +40,4 @@ const RegisterContainer = () => {
   );
 };
 
-export default RegisterContainer;
+export default SignInContainer;
