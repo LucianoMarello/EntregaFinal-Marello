@@ -1,13 +1,25 @@
 import { createContext } from "react";
-import { signUp, loginWithGoogle, logIn } from "../firebaseConfig";
+import { signUp, loginWithGoogle, logIn, db } from "../firebaseConfig";
+import { addDoc, collection } from "firebase/firestore";
 
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
   const createAccount = async (user) => {
-    //Agregar Descripcion de errores posibles
-    let res = await signUp(user.email, user.password);
-    console.log(res);
+    try {
+      //Agregar Descripcion de errores posibles
+      let result = await signUp(user.email, user.password);
+      //Creacion de la cuenta de usuario en Firebase
+      console.log(result);
+      const usersCollection = collection(db, "users");
+      addDoc(usersCollection, user).then((res) => {
+        console.log(res);
+        // localStorage.setItem("name", );
+        // localStorage.setItem("email", );
+      });
+    } catch (error) {
+      console.error("Error al obtener los datos: ", error);
+    }
   };
 
   const signIn = async (user) => {
@@ -21,11 +33,9 @@ const AuthContextProvider = ({ children }) => {
     let res = await loginWithGoogle();
     const name = res.user.displayName;
     const email = res.user.email;
-    const profilePic = res.user.photoURL;
 
     localStorage.setItem("name", name);
     localStorage.setItem("email", email);
-    localStorage.setItem("profilePic", profilePic);
   };
 
   const logOut = () => {
