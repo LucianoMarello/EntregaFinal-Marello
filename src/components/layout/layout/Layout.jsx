@@ -1,9 +1,13 @@
 import { Outlet } from "react-router-dom";
 import { Navbar } from "../navbar/Navbar";
 import Footer from "../footer/Footer";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext";
 
 const Layout = () => {
+  const { logged } = useContext(AuthContext);
+  logged();
   return (
     <Box
       sx={{
@@ -14,9 +18,9 @@ const Layout = () => {
       }}
     >
       <Navbar />
-      <Box sx={{ flex: 1, minHeight: "60vh" }}>
+      <Grid sx={{ flex: 1, minHeight: "60vh" }}>
         <Outlet />
-      </Box>
+      </Grid>
       <Footer />
     </Box>
   );

@@ -1,13 +1,20 @@
-import { createContext } from "react";
-import { signUp, loginWithGoogle, logIn, db } from "../firebaseConfig";
+import { createContext, useState } from "react";
+import {
+  signUp,
+  loginWithGoogle,
+  logIn,
+  db,
+  logout,
+  auth,
+} from "../firebaseConfig";
 import { addDoc, collection } from "firebase/firestore";
-
+import { onAuthStateChanged } from "firebase/auth";
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
+  const [isLogged, setIsLogged] = useState(false);
   const createAccount = async (user) => {
     try {
-      //Agregar Descripcion de errores posibles
       let result = await signUp(user.email, user.password);
       //Creacion de la cuenta de usuario en Firebase
       console.log(result);
@@ -18,14 +25,23 @@ const AuthContextProvider = ({ children }) => {
         // localStorage.setItem("email", );
       });
     } catch (error) {
-      console.error("Error al obtener los datos: ", error);
+      if (error.code === "auth/email-already-in-use") {
+        alert("Este email ya existe");
+      } else if (error.code === "auth/invalid-email") {
+        alert("Email invalido");
+      } else if (error.code) {
+        alert("Algo no funcionó");
+      }
     }
   };
 
   const signIn = async (user) => {
-    //Agregar Descripcion de errores posibles
-    let res = await logIn(user.email, user.password);
-    console.log(res);
+    try {
+      let res = await logIn(user.email, user.password);
+      console.log(res);
+    } catch (error) {
+      console.log();
+    }
   };
 
   const signInWithGoogle = async () => {
@@ -39,7 +55,17 @@ const AuthContextProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    localStorage.clear();
+    logout();
+    setIsLogged(false);
+    console.log("Se cerró la sesión");
+  };
+
+  const logged = async () => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setIsLogged(true);
+      }
+    });
   };
 
   let data = {
@@ -47,6 +73,8 @@ const AuthContextProvider = ({ children }) => {
     signInWithGoogle,
     logOut,
     signIn,
+    logged,
+    isLogged,
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

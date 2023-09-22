@@ -4,7 +4,7 @@ import Logged from "./Logged";
 import { AuthContext } from "../../../context/AuthContext";
 
 const LoginContainer = () => {
-  const { logOut } = useContext(AuthContext);
+  const { logOut, isLogged } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -19,7 +19,7 @@ const LoginContainer = () => {
   };
   return (
     <>
-      {localStorage.getItem("name") ? (
+      {isLogged ? (
         <Logged
           open={open}
           handleClick={handleClick}

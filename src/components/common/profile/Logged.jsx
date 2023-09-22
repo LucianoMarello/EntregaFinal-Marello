@@ -14,7 +14,7 @@ const Logged = ({ open, handleClick, handleClose, anchorEl, logOff }) => {
         onClick={handleClick}
         startIcon={<AccountCircle />}
       >
-        {localStorage.getItem("name")}
+        Nombre y Apellido
       </Button>
       <Menu
         id="basic-menu"

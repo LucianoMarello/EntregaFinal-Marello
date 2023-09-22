@@ -74,7 +74,7 @@ const Checkout = ({
             return (
               <h2 key={element.name} className="details">
                 - {element.quantity} unidad/es de {element.name} x $
-                {element.price}= ${element.price * element.quantity}
+                {element.price} = ${element.price * element.quantity}
               </h2>
             );
           })}
