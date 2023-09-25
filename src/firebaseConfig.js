@@ -6,7 +6,6 @@ import {
     createUserWithEmailAndPassword,
     signInWithPopup,
     GoogleAuthProvider,
-    signOut
 } from "firebase/auth"
 
 const firebaseConfig = {
@@ -39,9 +38,4 @@ let googleProvider = new GoogleAuthProvider()
 export const loginWithGoogle = async () => {
     let res = await signInWithPopup(auth, googleProvider)
     return res
-}
-
-//Cerrar Sesión
-export const logout = () => {
-    signOut(auth)
 }

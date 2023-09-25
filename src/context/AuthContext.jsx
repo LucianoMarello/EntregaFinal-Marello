@@ -1,14 +1,6 @@
 import { createContext, useState } from "react";
-import {
-  signUp,
-  loginWithGoogle,
-  logIn,
-  db,
-  logout,
-  auth,
-} from "../firebaseConfig";
-import { addDoc, collection } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+import { signUp, loginWithGoogle, logIn, auth } from "../firebaseConfig";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
@@ -16,14 +8,7 @@ const AuthContextProvider = ({ children }) => {
   const createAccount = async (user) => {
     try {
       let result = await signUp(user.email, user.password);
-      //Creacion de la cuenta de usuario en Firebase
       console.log(result);
-      const usersCollection = collection(db, "users");
-      addDoc(usersCollection, user).then((res) => {
-        console.log(res);
-        // localStorage.setItem("name", );
-        // localStorage.setItem("email", );
-      });
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("Este email ya existe");
@@ -40,7 +25,15 @@ const AuthContextProvider = ({ children }) => {
       let res = await logIn(user.email, user.password);
       console.log(res);
     } catch (error) {
-      console.log();
+      if (error.code === "auth/wrong-password") {
+        alert("Contraseña incorrecta");
+      } else if (error.code === "auth/invalid-email") {
+        alert("Email invalido");
+      } else if (error.code === "auth/user-not-found") {
+        alert("El usuario no existe");
+      } else if (error.code) {
+        alert("Algo no funcionó");
+      }
     }
   };
 
@@ -54,14 +47,14 @@ const AuthContextProvider = ({ children }) => {
     localStorage.setItem("email", email);
   };
 
-  const logOut = () => {
-    logout();
+  const logOut = async () => {
+    await signOut(auth);
     setIsLogged(false);
-    console.log("Se cerró la sesión");
   };
 
   const logged = async () => {
     onAuthStateChanged(auth, async (user) => {
+      console.log(user);
       if (user) {
         setIsLogged(true);
       }
