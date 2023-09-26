@@ -13,6 +13,10 @@ const ProductCard = ({ element }) => {
     <Card sx={{ Width: 345, border: 0.2, margin: 2 }}>
       <Link to={`/itemDetail/${element.id}`}>
         <CardMedia
+          sx={{
+            transition: "all 300ms",
+            "&:hover": { transform: "scale(1.1)" },
+          }}
           component="img"
           alt={element.name}
           height="380rem"

@@ -2,7 +2,14 @@ import { AccountCircle } from "@mui/icons-material";
 import { Button, Menu, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const Logged = ({ open, handleClick, handleClose, anchorEl, logOff }) => {
+const Logged = ({
+  open,
+  handleClick,
+  handleClose,
+  anchorEl,
+  logOff,
+  userName,
+}) => {
   return (
     <div>
       <Button
@@ -14,7 +21,7 @@ const Logged = ({ open, handleClick, handleClose, anchorEl, logOff }) => {
         onClick={handleClick}
         startIcon={<AccountCircle />}
       >
-        Nombre y Apellido
+        {userName === "" ? "Sin nombre" : userName}
       </Button>
       <Menu
         id="basic-menu"

@@ -1,14 +1,16 @@
 import { createContext, useState } from "react";
-import { signUp, loginWithGoogle, logIn, auth } from "../firebaseConfig";
+import { signUp, loginWithGoogle, logIn, auth, db } from "../firebaseConfig";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { collection, getDocs } from "firebase/firestore";
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
+  const [userName, setUserName] = useState("");
   const createAccount = async (user) => {
     try {
-      let result = await signUp(user.email, user.password);
-      console.log(result);
+      await signUp(user.email, user.password);
+      setUserName(user.name);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("Este email ya existe");
@@ -22,8 +24,7 @@ const AuthContextProvider = ({ children }) => {
 
   const signIn = async (user) => {
     try {
-      let res = await logIn(user.email, user.password);
-      console.log(res);
+      await logIn(user.email, user.password);
     } catch (error) {
       if (error.code === "auth/wrong-password") {
         alert("Contraseña incorrecta");
@@ -40,23 +41,29 @@ const AuthContextProvider = ({ children }) => {
   const signInWithGoogle = async () => {
     //Agregar Descripcion de errores posibles
     let res = await loginWithGoogle();
-    const name = res.user.displayName;
-    const email = res.user.email;
-
-    localStorage.setItem("name", name);
-    localStorage.setItem("email", email);
+    setUserName(res.user.displayName);
   };
 
   const logOut = async () => {
     await signOut(auth);
     setIsLogged(false);
+    setUserName("");
   };
 
   const logged = async () => {
     onAuthStateChanged(auth, async (user) => {
-      console.log(user);
       if (user) {
         setIsLogged(true);
+        //Busqueda de nombre de usuario correspondiente
+        let usersCollection = collection(db, "users");
+        let reference = usersCollection;
+        getDocs(reference).then((res) => {
+          res.docs.map((doc) => {
+            if (doc.data().email == user.email) {
+              setUserName(doc.data().name);
+            }
+          });
+        });
       }
     });
   };
@@ -68,6 +75,7 @@ const AuthContextProvider = ({ children }) => {
     signIn,
     logged,
     isLogged,
+    userName,
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

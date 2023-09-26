@@ -3,6 +3,8 @@ import * as Yup from "yup";
 import Register from "./Register";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
 
 const RegisterContainer = () => {
   const { createAccount, signInWithGoogle } = useContext(AuthContext);
@@ -21,7 +23,10 @@ const RegisterContainer = () => {
       };
 
       //Crear usuario en base de datos
-      createAccount(user);
+      const usersCollection = collection(db, "users");
+      addDoc(usersCollection, user).then(() => {
+        createAccount(user);
+      });
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Este campo es obligatorio"),
