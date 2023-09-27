@@ -5,9 +5,10 @@ import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
+import { Navigate } from "react-router-dom";
 
 const RegisterContainer = () => {
-  const { createAccount, signInWithGoogle } = useContext(AuthContext);
+  const { createAccount, isLogged } = useContext(AuthContext);
 
   const { handleSubmit, handleChange, errors } = useFormik({
     initialValues: {
@@ -44,12 +45,17 @@ const RegisterContainer = () => {
   });
 
   return (
-    <Register
-      handleSubmit={handleSubmit}
-      handleChange={handleChange}
-      errors={errors}
-      signInWithGoogle={signInWithGoogle}
-    />
+    <>
+      {isLogged ? (
+        <Navigate to="/" />
+      ) : (
+        <Register
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          errors={errors}
+        />
+      )}
+    </>
   );
 };
 

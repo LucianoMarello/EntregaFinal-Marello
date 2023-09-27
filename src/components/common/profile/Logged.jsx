@@ -21,7 +21,7 @@ const Logged = ({
         onClick={handleClick}
         startIcon={<AccountCircle />}
       >
-        {userName === "" ? "Sin nombre" : userName}
+        {userName === "" ? "Mi Cuenta" : userName}
       </Button>
       <Menu
         id="basic-menu"

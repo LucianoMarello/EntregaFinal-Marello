@@ -1,6 +1,7 @@
 import { Box, Button, Grid, TextField } from "@mui/material";
+import SignInWithGoogle from "../../common/signInWithGoogle/SignInWithGoogle";
 
-const SignIn = ({ handleSubmit, handleChange, errors, signInWithGoogle }) => {
+const SignIn = ({ handleSubmit, handleChange, errors }) => {
   return (
     <Box>
       <Grid
@@ -42,13 +43,7 @@ const SignIn = ({ handleSubmit, handleChange, errors, signInWithGoogle }) => {
             Iniciar Sesión
           </Button>
         </form>
-        <button
-          type="button"
-          className="login-with-google-btn"
-          onClick={signInWithGoogle}
-        >
-          Iniciar Sesión con Google
-        </button>
+        <SignInWithGoogle />
       </Grid>
     </Box>
   );

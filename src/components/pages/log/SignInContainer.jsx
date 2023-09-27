@@ -3,9 +3,10 @@ import { useContext } from "react";
 import * as Yup from "yup";
 import { AuthContext } from "../../../context/AuthContext";
 import SignIn from "./SignIn";
+import { Navigate } from "react-router-dom";
 
 const SignInContainer = () => {
-  const { signInWithGoogle, signIn } = useContext(AuthContext);
+  const { signIn, isLogged } = useContext(AuthContext);
 
   const { handleSubmit, handleChange, errors } = useFormik({
     initialValues: {
@@ -31,12 +32,17 @@ const SignInContainer = () => {
     validateOnChange: false,
   });
   return (
-    <SignIn
-      handleSubmit={handleSubmit}
-      handleChange={handleChange}
-      errors={errors}
-      signInWithGoogle={signInWithGoogle}
-    />
+    <>
+      {isLogged ? (
+        <Navigate to="/" />
+      ) : (
+        <SignIn
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          errors={errors}
+        />
+      )}
+    </>
   );
 };
 

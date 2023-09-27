@@ -1,7 +1,8 @@
 import { Box, Button, Grid, TextField } from "@mui/material";
 import "./Register.css";
+import SignInWithGoogle from "../../common/signInWithGoogle/SignInWithGoogle";
 
-const Register = ({ handleSubmit, handleChange, errors, signInWithGoogle }) => {
+const Register = ({ handleSubmit, handleChange, errors }) => {
   return (
     <Box>
       <Grid
@@ -63,13 +64,7 @@ const Register = ({ handleSubmit, handleChange, errors, signInWithGoogle }) => {
             Crear Cuenta
           </Button>
         </form>
-        <button
-          type="button"
-          className="login-with-google-btn"
-          onClick={signInWithGoogle}
-        >
-          Iniciar Sesión con Google
-        </button>
+        <SignInWithGoogle />
       </Grid>
     </Box>
   );
