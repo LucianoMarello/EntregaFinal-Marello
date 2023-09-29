@@ -11,9 +11,9 @@ const AppRouter = () => {
         {routes.map(({ id, path, Element }) => (
           <Route key={id} path={path} element={<Element />} />
         ))}
-      </Route>
-      <Route element={<ProtectedRoutes />}>
-        <Route path="/dashboard" element={<DashboardContainer />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/dashboard" element={<DashboardContainer />} />
+        </Route>
       </Route>
       <Route path="*" element={<h1>404 not found</h1>} />
       {/* Hace algo mas lindo para el error 404 */}

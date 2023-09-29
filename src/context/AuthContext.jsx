@@ -7,6 +7,7 @@ export const AuthContext = createContext();
 const AuthContextProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [userName, setUserName] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const createAccount = async (user) => {
     try {
@@ -49,6 +50,7 @@ const AuthContextProvider = ({ children }) => {
     await signOut(auth);
     setIsLogged(false);
     setUserName("");
+    setIsAdmin(false);
   };
 
   const logged = async () => {
@@ -65,6 +67,11 @@ const AuthContextProvider = ({ children }) => {
             }
           });
         });
+        if (user.email === "admin@gmail.com") {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
       }
     });
   };
@@ -77,6 +84,7 @@ const AuthContextProvider = ({ children }) => {
     logged,
     isLogged,
     userName,
+    isAdmin,
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

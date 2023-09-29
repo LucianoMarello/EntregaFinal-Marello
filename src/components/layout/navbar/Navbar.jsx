@@ -1,11 +1,15 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import CartWidget from "../../common/cartWidget/CartWidget";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import LoginContainer from "../../common/profile/LoginContainer";
 import SearchBar from "../../common/searchBar/SearchBar";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext";
 
 export const Navbar = () => {
+  const { isAdmin } = useContext(AuthContext);
+
   return (
     <Box>
       <Grid className="container">
@@ -16,6 +20,14 @@ export const Navbar = () => {
             alt="logoADN"
           />
         </Link>
+
+        {isAdmin && (
+          <Link to="/dashboard">
+            <Button variant="contained" color="secondary">
+              ADMIN
+            </Button>
+          </Link>
+        )}
 
         <SearchBar />
 
