@@ -3,6 +3,7 @@ import CartWidget from "../../common/cartWidget/CartWidget";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import LoginContainer from "../../common/profile/LoginContainer";
+import SearchBar from "../../common/searchBar/SearchBar";
 
 export const Navbar = () => {
   return (
@@ -16,7 +17,7 @@ export const Navbar = () => {
           />
         </Link>
 
-        <h2>FUTURE SEARCH BAR</h2>
+        <SearchBar />
 
         <LoginContainer />
 
