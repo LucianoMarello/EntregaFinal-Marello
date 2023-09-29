@@ -6,7 +6,6 @@ import { db } from "../../../firebaseConfig";
 
 const SearchBar = () => {
   const [products, setProducts] = useState([]);
-  const [value, setValue] = useState("");
 
   useEffect(() => {
     let productsCollection = collection(db, "products");
@@ -18,13 +17,19 @@ const SearchBar = () => {
     });
   }, []);
 
+  const redirectToProduct = (name) => {
+    const prod = products.find((element) => element.name === name);
+    window.location.href = `../itemDetail/${prod.id}`;
+  };
+
   return (
     <div>
-      <h2>{`valor: ${value}`}</h2>
       <Autocomplete
-        options={products.map((option) => option.name)}
+        options={products.map((option) => {
+          return option.name;
+        })}
         onChange={(event, val) => {
-          setValue(val);
+          redirectToProduct(val);
         }}
         renderInput={(params) => (
           <TextField
@@ -43,6 +48,7 @@ const SearchBar = () => {
           />
         )}
       />
+      {}
     </div>
   );
 };
