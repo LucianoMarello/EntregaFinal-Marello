@@ -2,7 +2,8 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import { products } from "../../../productMock";
 import { useState } from "react";
-import { Box, Grid, TextField } from "@mui/material";
+import { Box, Button, Grid, TextField } from "@mui/material";
+import "./Dashboard.css";
 
 const DashboardContainer = () => {
   const [prods, setProds] = useState(products);
@@ -17,28 +18,62 @@ const DashboardContainer = () => {
   return (
     <div>
       <h1>DASHBOARD</h1>
-      <Box sx={{ margin: "3rem" }}>
-        <h2>Productos</h2>
-        {prods.map((element, index) => {
-          return (
-            <Grid
-              sx={{ display: "flex", justifyContent: "center" }}
-              item
-              key={index}
-            >
-              <h2>{element.name} - </h2>
-              <Grid sx={{ display: "flex" }}>
-                <h2>- Stock: </h2>
-                <TextField
-                  variant="standard"
-                  sx={{ width: "3rem", marginLeft: "1rem" }}
-                  defaultValue={element.stock}
-                ></TextField>
-              </Grid>
-            </Grid>
-          );
-        })}
-        <button onClick={fill}>RELLENAR</button>
+      <Box
+        sx={{
+          width: "80%",
+          minHeight: "10rem",
+          margin: "0 10%",
+        }}
+      >
+        <table>
+          <tr>
+            <th>Productos</th>
+            <th>Precio</th>
+            <th>Categoría</th>
+            <th>Stock</th>
+            <th>Descripción</th>
+          </tr>
+          {prods.map((element, index) => {
+            return (
+              <tr key={index}>
+                <td>{element.name}</td>
+                <td>
+                  <TextField
+                    variant="standard"
+                    defaultValue={element.price}
+                    sx={{ width: "3rem" }}
+                  ></TextField>
+                </td>
+                <td>{element.category}</td>
+                <td>
+                  <TextField
+                    variant="standard"
+                    defaultValue={element.stock}
+                    sx={{ width: "3rem" }}
+                  ></TextField>
+                </td>
+                <td>{element.description}</td>
+              </tr>
+            );
+          })}
+        </table>
+        <Grid
+          sx={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            margin: "2rem",
+          }}
+        >
+          <Button variant="contained" color="secondary" onClick={fill}>
+            RELLENAR
+          </Button>
+          <Button variant="contained" color="secondary">
+            Guardar Cambios
+          </Button>
+          <Button variant="contained" color="secondary">
+            Reestablecer
+          </Button>
+        </Grid>
       </Box>
     </div>
   );
