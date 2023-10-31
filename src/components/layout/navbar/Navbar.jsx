@@ -43,7 +43,6 @@ export const Navbar = () => {
         )}
 
         <LoginContainer />
-
         <SearchBar />
 
         <CartWidget />
@@ -58,6 +57,12 @@ export const Navbar = () => {
           </li>
           <li>
             <Link to="/tienda/condimentos">Condimentos</Link>
+          </li>
+          <li>
+            <Link to="/tienda/frutos-secos">Frutos Secos</Link>
+          </li>
+          <li>
+            <Link to="/tienda/semillas">Semillas</Link>
           </li>
         </ul>
       </Grid>
