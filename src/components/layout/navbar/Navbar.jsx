@@ -6,6 +6,7 @@ import LoginContainer from "../../common/profile/LoginContainer";
 import SearchBar from "../../common/searchBar/SearchBar";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
+import { Home, Shop } from "@mui/icons-material";
 
 export const Navbar = () => {
   const { isAdmin } = useContext(AuthContext);
@@ -21,6 +22,18 @@ export const Navbar = () => {
           />
         </Link>
 
+        <Link to="/">
+          <Button sx={{ color: "#2B8180" }} startIcon={<Home />}>
+            Inicio
+          </Button>
+        </Link>
+
+        <Link to="/tienda">
+          <Button sx={{ color: "#2B8180" }} startIcon={<Shop />}>
+            Tienda
+          </Button>
+        </Link>
+
         {isAdmin && (
           <Link to="/dashboard">
             <Button variant="contained" color="secondary">
@@ -29,9 +42,9 @@ export const Navbar = () => {
           </Link>
         )}
 
-        <SearchBar />
-
         <LoginContainer />
+
+        <SearchBar />
 
         <CartWidget />
       </Grid>

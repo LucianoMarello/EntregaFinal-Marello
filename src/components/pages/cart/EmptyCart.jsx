@@ -14,7 +14,7 @@ const EmptyCart = () => {
         }}
       >
         <h1>No hay productos en el carrito</h1>
-        <Link to="/">
+        <Link to="/tienda">
           <Button variant="contained">Ir a la Tienda</Button>
         </Link>
       </Grid>

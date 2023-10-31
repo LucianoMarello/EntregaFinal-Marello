@@ -1,5 +1,6 @@
 import CartContainer from "../components/pages/cart/CartContainer";
 import CheckoutContainer from "../components/pages/checkout/CheckoutContainer";
+import Home from "../components/pages/home/Home";
 import ItemDetailContainer from "../components/pages/itemDetail/ItemDetailContainer";
 import ItemListContainer from "../components/pages/itemList/ItemListContainer";
 import SignInContainer from "../components/pages/log/SignInContainer";
@@ -10,10 +11,15 @@ export const routes = [
     {
         id: "home",
         path: "/",
-        Element: ItemListContainer
+        Element: Home
     },
     {
         id: "store",
+        path: "/tienda",
+        Element: ItemListContainer
+    },
+    {
+        id: "category",
         path: "/tienda/:category",
         Element: ItemListContainer
     },
