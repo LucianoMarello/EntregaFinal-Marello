@@ -16,7 +16,8 @@ import { Navigate } from "react-router-dom";
 
 const CheckoutContainer = () => {
   const [orderId, setOrderId] = useState("");
-  const { cart, getTotalPrice, getTotalQuantity } = useContext(CartContext);
+  const { cart, getTotalPrice, getTotalQuantity, clearCart } =
+    useContext(CartContext);
 
   let total = getTotalPrice();
   let date = serverTimestamp();
@@ -89,6 +90,7 @@ const CheckoutContainer = () => {
           cart={cart}
           total={total}
           orderId={orderId}
+          clearCart={clearCart}
         />
       )}
     </>

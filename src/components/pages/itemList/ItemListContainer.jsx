@@ -7,6 +7,7 @@ import { getDocs, collection, query, where } from "firebase/firestore";
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);
   const { category } = useParams();
+  const [title, setTitle] = useState();
 
   useEffect(() => {
     let productsCollection = collection(db, "products");
@@ -22,14 +23,26 @@ const ItemListContainer = () => {
       });
       setItems(products);
     });
+
+    if (category === "cereales") {
+      setTitle("Cereales");
+    } else if (category === "legumbres") {
+      setTitle("Legumbres");
+    } else if (category === "condimentos") {
+      setTitle("Condimentos");
+    } else if (category === "frutos-secos") {
+      setTitle("Frutos Secos");
+    } else if (category === "semillas") {
+      setTitle("Semillas");
+    }
   }, [category]);
 
   return (
     <>
       {items.length === 0 ? (
-        <h2>Cargando...</h2>
+        <h1>Cargando...</h1>
       ) : (
-        <ItemList items={items} category={category} />
+        <ItemList items={items} title={title} />
       )}
       ;
     </>

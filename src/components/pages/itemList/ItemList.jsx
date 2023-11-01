@@ -2,10 +2,10 @@ import { Box, Grid } from "@mui/material";
 import ProductCard from "../../common/productCard/ProductCard";
 import "./ItemList.css";
 
-const ItemList = ({ items, category }) => {
+const ItemList = ({ items, title }) => {
   return (
     <Box>
-      <h1>{category ? `Productos: ${category}` : "Productos"}</h1>
+      <h1>{title ? title : "Productos"}</h1>
       <Grid container>
         {items.map((element) => {
           return (

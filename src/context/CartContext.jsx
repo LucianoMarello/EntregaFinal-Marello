@@ -1,10 +1,18 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext();
 
 const CartContextProvider = ({ children }) => {
   //Arreglo carrito
   const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    // Cargar el carrito desde el localStorage al cargar la aplicación
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
 
   //Agregar items al carrito
   const addToCart = (item) => {
@@ -18,7 +26,9 @@ const CartContextProvider = ({ children }) => {
         }
       });
       setCart(newArray);
+      localStorage.setItem("cart", JSON.stringify(newArray));
     } else {
+      localStorage.setItem("cart", JSON.stringify([...cart, item]));
       setCart([...cart, item]);
     }
   };
@@ -32,12 +42,14 @@ const CartContextProvider = ({ children }) => {
   //Vaciar el carrito
   const clearCart = () => {
     setCart([]);
+    localStorage.removeItem("cart");
   };
 
   //Eliminar un elemento del carrito
   const deleteById = (id) => {
     let newArray = cart.filter((element) => element.id !== id);
     setCart(newArray);
+    localStorage.setItem("cart", JSON.stringify(newArray));
   };
 
   //Calcular el total a pagar en el carrito

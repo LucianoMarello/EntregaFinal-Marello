@@ -4,6 +4,16 @@
   justify-content: center;
   width: 25rem;
 }
+
+.detailTitle {
+  margin: 1rem;
+}
 .details {
-  padding-bottom: 1rem;
+  padding: 1rem;
+}
+
+.final {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
 }

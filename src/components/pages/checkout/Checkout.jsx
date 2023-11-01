@@ -1,5 +1,6 @@
 import { Box, Button, Grid, TextField } from "@mui/material";
 import "./Checkout.css";
+import { Link } from "react-router-dom";
 
 const Checkout = ({
   handleSubmit,
@@ -8,6 +9,7 @@ const Checkout = ({
   cart,
   total,
   orderId,
+  clearCart,
 }) => {
   return (
     <Box>
@@ -69,7 +71,7 @@ const Checkout = ({
           </Button>
         </form>
         <Grid>
-          <h1 className="details">Detalle de compra</h1>
+          <h1 className="detailTitle">Detalle de compra</h1>
           {cart.map((element) => {
             return (
               <h2 key={element.name} className="details">
@@ -81,8 +83,13 @@ const Checkout = ({
           <h2 className="details">Total: ${total}</h2>
           {orderId && (
             <div>
-              <h2>Su compra finalizó</h2>
-              <h4>Orden de compra: {orderId}</h4>
+              <h2 className="details">Su compra finalizó</h2>
+              <h4 className="details">Orden de compra: {orderId}</h4>
+              <Link className="final" to="/">
+                <Button onClick={clearCart} variant="outlined" color="success">
+                  Volver al Inicio
+                </Button>
+              </Link>
             </div>
           )}
         </Grid>

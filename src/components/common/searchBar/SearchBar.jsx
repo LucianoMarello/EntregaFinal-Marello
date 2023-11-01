@@ -1,10 +1,12 @@
 import { Search } from "@mui/icons-material";
 import { Autocomplete, InputAdornment, TextField } from "@mui/material";
 import { collection, getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { db } from "../../../firebaseConfig";
+import { CartContext } from "../../../context/CartContext";
 
 const SearchBar = () => {
+  const { cart } = useContext(CartContext);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -19,6 +21,7 @@ const SearchBar = () => {
 
   const redirectToProduct = (name) => {
     const prod = products.find((element) => element.name === name);
+    localStorage.setItem("cart", JSON.stringify(cart));
     window.location.href = `../itemDetail/${prod.id}`;
   };
 
