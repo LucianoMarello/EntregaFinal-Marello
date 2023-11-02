@@ -9,11 +9,13 @@ const EmptyCart = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "space-around",
-          height: "12rem",
+          justifyContent: "space-between",
+          minHeight: "15rem",
         }}
       >
-        <h1>No hay productos en el carrito</h1>
+        <h1 className="lines-effect">Carrito</h1>
+
+        <h2>No hay productos en el carrito</h2>
         <Link to="/tienda">
           <Button variant="contained">Ir a la Tienda</Button>
         </Link>

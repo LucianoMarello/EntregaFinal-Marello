@@ -28,13 +28,14 @@ const ProductCard = ({ element }) => {
           {element.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {element.description}
+          Precio por unidad: ${element.price}
         </Typography>
       </CardContent>
       <CardActions>
         <Link to={`/itemDetail/${element.id}`}>
           <Button size="small">Ver Producto</Button>
         </Link>
+        <Button size="small">Comprar</Button>
       </CardActions>
     </Card>
   );

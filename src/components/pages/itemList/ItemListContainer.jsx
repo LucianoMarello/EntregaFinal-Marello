@@ -40,7 +40,7 @@ const ItemListContainer = () => {
   return (
     <>
       {items.length === 0 ? (
-        <h1>Cargando...</h1>
+        <h1 className="lines-effect">Cargando...</h1>
       ) : (
         <ItemList items={items} title={title} />
       )}

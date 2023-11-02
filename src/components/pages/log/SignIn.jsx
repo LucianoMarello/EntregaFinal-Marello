@@ -12,7 +12,7 @@ const SignIn = ({ handleSubmit, handleChange, errors }) => {
           alignItems: "center",
         }}
       >
-        <h1>Iniciar Sesión</h1>
+        <h1 className="lines-effect">Iniciar Sesión</h1>
         <form className="form" onSubmit={handleSubmit}>
           <TextField
             margin="dense"

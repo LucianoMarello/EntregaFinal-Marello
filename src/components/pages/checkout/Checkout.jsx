@@ -13,11 +13,11 @@ const Checkout = ({
 }) => {
   return (
     <Box>
+      <h1 className="lines-effect">Checkout</h1>
       <Grid
         sx={{
           display: "flex",
           justifyContent: "space-around",
-          padding: "4rem",
         }}
       >
         <form className="form" onSubmit={handleSubmit}>
@@ -70,11 +70,11 @@ const Checkout = ({
             Confirmar Compra
           </Button>
         </form>
-        <Grid>
-          <h1 className="detailTitle">Detalle de compra</h1>
+        <Grid className="detail">
+          <h1>Detalle de compra</h1>
           {cart.map((element) => {
             return (
-              <h2 key={element.name} className="details">
+              <h2 key={element.name}>
                 - {element.quantity} unidad/es de {element.name} x $
                 {element.price} = ${element.price * element.quantity}
               </h2>

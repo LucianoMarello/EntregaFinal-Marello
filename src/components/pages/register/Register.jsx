@@ -13,7 +13,7 @@ const Register = ({ handleSubmit, handleChange, errors }) => {
           alignItems: "center",
         }}
       >
-        <h1>Crear Cuenta</h1>
+        <h1 className="lines-effect">Crear Cuenta</h1>
         <form className="form" onSubmit={handleSubmit}>
           <TextField
             margin="dense"

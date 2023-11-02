@@ -10,6 +10,7 @@ import { getDoc, collection, doc } from "firebase/firestore";
 const ItemDetailContainer = () => {
   const { addToCart, getQuantityById } = useContext(CartContext);
   const [product, setProduct] = useState({});
+  const [loaded, setLoaded] = useState(true);
   const { id } = useParams();
 
   const totalQuantity = getQuantityById(id);
@@ -31,6 +32,7 @@ const ItemDetailContainer = () => {
     let productRef = doc(productsCollection, id);
     getDoc(productRef).then((res) => {
       setProduct({ ...res.data(), id: res.id });
+      setLoaded(false);
     });
   }, [id]);
 
@@ -41,9 +43,14 @@ const ItemDetailContainer = () => {
   };
 
   return (
-    <div>
-      <ItemDetail product={product} onAdd={onAdd} initial={totalQuantity} />
-    </div>
+    <>
+      {loaded ? (
+        <h1 className="lines-effect">Cargando...</h1>
+      ) : (
+        <ItemDetail product={product} onAdd={onAdd} initial={totalQuantity} />
+      )}
+      ;
+    </>
   );
 };
 

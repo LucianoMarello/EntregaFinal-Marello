@@ -11,7 +11,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Inicio</h1>
+      <h1 className="lines-effect">Inicio</h1>
       <div className="carousel">
         <Swiper
           modules={[Navigation, Pagination, A11y, Autoplay]}

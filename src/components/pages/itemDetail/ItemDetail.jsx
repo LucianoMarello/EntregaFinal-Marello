@@ -18,16 +18,15 @@ const ItemDetail = ({ product, onAdd, initial }) => {
         <img className="imgProd" src={product.img} alt={product.name} />
         <Grid
           sx={{
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-around",
-            padding: "12% 0",
-            width: "20rem",
+            height: "auto",
+            // backgroundColor: "red",
+            lineHeight: 2.5,
+            width: "25rem",
+            textAlign: "left",
           }}
         >
-          <h1 className="nomProd">{product.name}</h1>
-          <h2>Precio por Unidad: {product.price}</h2>
+          <h1>{product.name}</h1>
+          <h2>Precio por Unidad: ${product.price}</h2>
           <h3>Descripcion: {product.description}</h3>
           {product.stock === 0 ? (
             <h2>No hay stock del producto</h2>

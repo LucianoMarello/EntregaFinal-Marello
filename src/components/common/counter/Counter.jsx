@@ -1,14 +1,12 @@
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
+import "./Counter.css";
 
 const Counter = ({ contador, sumar, restar, onAdd }) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-around",
-        height: "7.5rem",
-        width: "14rem",
+        backgroundColor: "red",
+        width: "15rem",
       }}
     >
       <Grid
@@ -18,23 +16,11 @@ const Counter = ({ contador, sumar, restar, onAdd }) => {
           alignItems: "center",
         }}
       >
-        <Button variant="contained" onClick={restar}>
-          Restar
-        </Button>
+        <button onClick={restar}>-</button>
         <h3>{contador}</h3>
-        <Button variant="contained" onClick={sumar}>
-          Sumar
-        </Button>
+        <button onClick={sumar}>+</button>
       </Grid>
-      <Grid>
-        <Button
-          variant="contained"
-          fullWidth={true}
-          onClick={() => onAdd(contador)}
-        >
-          Agregar al Carrito
-        </Button>
-      </Grid>
+      <button onClick={() => onAdd(contador)}>Agregar al Carrito</button>
     </Box>
   );
 };

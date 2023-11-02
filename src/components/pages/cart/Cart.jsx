@@ -7,27 +7,26 @@ import { Link } from "react-router-dom";
 export const Cart = ({ cart, emptyCart, deleteById }) => {
   return (
     <Box>
-      <Grid sx={{ paddingTop: "2rem" }}>
-        {cart.map((element) => {
-          return (
-            <Grid
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              key={element.id}
-            >
-              <h2>
-                {element.name} - {element.quantity} unidad/es
-              </h2>
-              <IconButton color="error" onClick={() => deleteById(element.id)}>
-                <HighlightOffIcon />
-              </IconButton>
-            </Grid>
-          );
-        })}
-      </Grid>
+      <h1 className="lines-effect">Carrito</h1>
+      {cart.map((element) => {
+        return (
+          <Grid
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            key={element.id}
+          >
+            <h2>
+              {element.name} - {element.quantity} unidad/es
+            </h2>
+            <IconButton color="error" onClick={() => deleteById(element.id)}>
+              <HighlightOffIcon />
+            </IconButton>
+          </Grid>
+        );
+      })}
       <Grid
         sx={{
           display: "flex",

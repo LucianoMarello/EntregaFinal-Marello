@@ -1,9 +1,5 @@
 .imgProd {
   height: 100%;
-  border-radius: 10%;
-  border: 2px solid black;
-}
-.nomProd {
-  margin: 0;
-  text-align: left;
+  border-radius: 15%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
 }

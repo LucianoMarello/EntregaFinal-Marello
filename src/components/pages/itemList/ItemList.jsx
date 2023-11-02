@@ -5,7 +5,7 @@ import "./ItemList.css";
 const ItemList = ({ items, title }) => {
   return (
     <Box>
-      <h1>{title ? title : "Productos"}</h1>
+      <h1 className="lines-effect">{title ? title : "Productos"}</h1>
       <Grid container>
         {items.map((element) => {
           return (
