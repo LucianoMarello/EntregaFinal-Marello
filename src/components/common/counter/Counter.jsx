@@ -5,7 +5,6 @@ const Counter = ({ contador, sumar, restar, onAdd }) => {
   return (
     <Box
       sx={{
-        backgroundColor: "red",
         width: "15rem",
       }}
     >
@@ -16,11 +15,20 @@ const Counter = ({ contador, sumar, restar, onAdd }) => {
           alignItems: "center",
         }}
       >
-        <button onClick={restar}>-</button>
-        <h3>{contador}</h3>
-        <button onClick={sumar}>+</button>
+        <button className="count-button" onClick={restar}>
+          -
+        </button>
+        <span className="value">{contador}</span>
+        <button className="count-button" onClick={sumar}>
+          +
+        </button>
       </Grid>
-      <button onClick={() => onAdd(contador)}>Agregar al Carrito</button>
+      <button
+        className="count-button add-button"
+        onClick={() => onAdd(contador)}
+      >
+        Agregar al Carrito
+      </button>
     </Box>
   );
 };

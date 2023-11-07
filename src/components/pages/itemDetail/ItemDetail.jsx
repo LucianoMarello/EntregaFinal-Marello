@@ -19,7 +19,6 @@ const ItemDetail = ({ product, onAdd, initial }) => {
         <Grid
           sx={{
             height: "auto",
-            // backgroundColor: "red",
             lineHeight: 2.5,
             width: "25rem",
             textAlign: "left",

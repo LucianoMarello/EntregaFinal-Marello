@@ -9,7 +9,7 @@ const ItemList = ({ items, title }) => {
       <Grid container>
         {items.map((element) => {
           return (
-            <Grid item key={element.id} xs={12} sm={6} md={4}>
+            <Grid item key={element.id} xs={12} md={6} lg={4}>
               <ProductCard key={element.id} element={element} />
             </Grid>
           );

@@ -31,11 +31,15 @@ const ProductCard = ({ element }) => {
           Precio por unidad: ${element.price}
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <Link to={`/itemDetail/${element.id}`}>
-          <Button size="small">Ver Producto</Button>
+          <Button>Ver Producto</Button>
         </Link>
-        <Button size="small">Comprar</Button>
       </CardActions>
     </Card>
   );
